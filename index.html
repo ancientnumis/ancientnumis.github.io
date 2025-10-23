@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ancient Coins Collection - Roman Provincial Architecture</title>
+    <title>AncientNumis - Monumenta Collection</title>
     <style>
         * {
             margin: 0;
@@ -14,10 +14,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;600&display=swap');
 
         :root {
-            --rainbow-1: rgba(255, 100, 200, 0.3);
-            --rainbow-2: rgba(150, 100, 255, 0.3);
-            --rainbow-3: rgba(100, 200, 255, 0.3);
-            --rainbow-4: rgba(100, 255, 200, 0.3);
+            --gold: #d4af37;
+            --gold-dark: #b8941e;
+            --gold-light: #f4d03f;
+            --bronze: #cd7f32;
         }
 
         body {
@@ -29,13 +29,18 @@
         }
 
         header {
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.98);
             padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            border-bottom-color: rgba(212, 175, 55, 0.5);
         }
 
         nav {
@@ -49,14 +54,21 @@
 
         .logo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 300;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #ffffff, #a8a8a8, #ffffff);
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--bronze));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .logo:hover {
+            letter-spacing: 6px;
+            filter: brightness(1.3);
         }
 
         .nav-links {
@@ -66,7 +78,7 @@
         }
 
         .nav-links a {
-            color: #b8b8b8;
+            color: #888;
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 300;
@@ -74,24 +86,26 @@
             text-transform: uppercase;
             transition: all 0.4s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, #ff64c8, #9664ff, #64c8ff, #64ffc8);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
             transition: width 0.4s ease;
         }
 
         .nav-links a:hover {
-            color: #ffffff;
+            color: var(--gold);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::before {
             width: 100%;
         }
 
@@ -105,40 +119,48 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--rainbow-1) 25%, 
-                var(--rainbow-2) 50%, 
-                var(--rainbow-3) 75%, 
-                transparent);
-            animation: shimmerMove 8s ease-in-out infinite;
-            opacity: 0.15;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
         }
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 5rem;
+            font-size: 5.5rem;
             font-weight: 300;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: #ffffff;
-            letter-spacing: 8px;
+            letter-spacing: 12px;
             text-transform: uppercase;
             position: relative;
             z-index: 1;
+            transition: all 0.6s ease;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #a8a8a8;
-            letter-spacing: 4px;
+        .hero h1:hover {
+            letter-spacing: 16px;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .hero .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 6px;
             font-weight: 300;
-            text-transform: uppercase;
+            font-style: italic;
             position: relative;
             z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        .hero .subtitle:hover {
+            color: var(--gold-light);
+            letter-spacing: 8px;
         }
 
         .container {
@@ -149,14 +171,21 @@
 
         .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 300;
             margin-bottom: 4rem;
             text-align: center;
             color: #ffffff;
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             text-transform: uppercase;
             position: relative;
+            transition: all 0.5s ease;
+            cursor: default;
+        }
+
+        .section-title:hover {
+            color: var(--gold);
+            letter-spacing: 12px;
         }
 
         .section-title::after {
@@ -167,7 +196,13 @@
             transform: translateX(-50%);
             width: 150px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .section-title:hover::after {
+            width: 250px;
+            box-shadow: 0 0 20px var(--gold);
         }
 
         .coin-grid {
@@ -181,7 +216,7 @@
             background: rgba(20, 20, 20, 0.5);
             border-radius: 0;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             cursor: pointer;
@@ -191,27 +226,40 @@
             content: '';
             position: absolute;
             top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+
+        .coin-card:hover::before {
+            left: 100%;
+        }
+
+        .coin-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, 
-                var(--rainbow-1), 
-                var(--rainbow-2), 
-                var(--rainbow-3), 
-                var(--rainbow-4));
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15), transparent);
             opacity: 0;
             transition: opacity 0.6s ease;
             z-index: 0;
         }
 
-        .coin-card:hover::before {
-            opacity: 0.15;
+        .coin-card:hover::after {
+            opacity: 1;
         }
 
         .coin-card:hover {
-            transform: translateY(-15px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 30px 60px rgba(255, 100, 255, 0.2);
+            transform: translateY(-20px) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3),
+                        0 0 100px rgba(212, 175, 55, 0.1);
         }
 
         .coin-image {
@@ -225,29 +273,53 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            transition: all 0.6s ease;
+        }
+
+        .coin-card:hover .coin-image {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            filter: brightness(1.2);
         }
 
         .coin-image::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .coin-card:hover .coin-image::after {
+            width: 400px;
+            height: 400px;
+        }
+
+        .coin-image::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
-            animation: rotate 15s linear infinite;
+            background: conic-gradient(from 0deg, transparent, rgba(212, 175, 55, 0.1), transparent 30%);
+            animation: rotate 4s linear infinite;
             opacity: 0;
             transition: opacity 0.6s ease;
         }
 
-        .coin-card:hover .coin-image::after {
+        .coin-card:hover .coin-image::before {
             opacity: 1;
         }
 
         .coin-info {
             padding: 2rem;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .coin-info h3 {
@@ -261,19 +333,23 @@
         }
 
         .coin-card:hover .coin-info h3 {
-            background: linear-gradient(135deg, #ff64c8, #9664ff, #64c8ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
         .coin-info .period {
-            color: #888;
+            color: #666;
             font-size: 0.85rem;
             margin-bottom: 1.2rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 300;
+            transition: all 0.4s ease;
+        }
+
+        .coin-card:hover .coin-info .period {
+            color: var(--bronze);
         }
 
         .coin-info p {
@@ -281,14 +357,19 @@
             font-size: 0.95rem;
             line-height: 1.8;
             font-weight: 300;
+            transition: all 0.4s ease;
+        }
+
+        .coin-card:hover .coin-info p {
+            color: #e8e8e8;
         }
 
         .blog-section {
             background: rgba(10, 10, 10, 0.5);
             padding: 5rem 0;
             margin-top: 6rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
         }
 
         .blog-posts {
@@ -300,10 +381,11 @@
         .blog-post {
             background: rgba(20, 20, 20, 0.5);
             padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.1);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .blog-post::before {
@@ -311,20 +393,35 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 3px;
-            height: 0;
-            background: linear-gradient(180deg, #ff64c8, #9664ff, #64c8ff, #64ffc8);
-            transition: height 0.5s ease;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--bronze));
+            transition: width 0.5s ease;
         }
 
         .blog-post:hover::before {
+            width: 4px;
+        }
+
+        .blog-post::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
             height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .blog-post:hover::after {
+            left: 100%;
         }
 
         .blog-post:hover {
-            transform: translateX(15px);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 40px rgba(150, 100, 255, 0.15);
+            transform: translateX(20px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: -10px 0 40px rgba(212, 175, 55, 0.1);
         }
 
         .blog-post h3 {
@@ -335,13 +432,13 @@
             font-weight: 400;
             letter-spacing: 1px;
             transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
         }
 
         .blog-post:hover h3 {
-            background: linear-gradient(135deg, #ff64c8, #9664ff, #64c8ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gold);
+            letter-spacing: 2px;
         }
 
         .blog-date {
@@ -351,16 +448,32 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 300;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-post:hover .blog-date {
+            color: var(--bronze);
         }
 
         .blog-post p {
             color: #b8b8b8;
             line-height: 1.9;
             font-weight: 300;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-post:hover p {
+            color: #e8e8e8;
         }
 
         .read-more {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             margin-top: 1.5rem;
             color: #888;
             text-decoration: none;
@@ -370,20 +483,21 @@
             font-size: 0.85rem;
             transition: all 0.4s ease;
             position: relative;
+            z-index: 1;
         }
 
         .read-more::after {
             content: '→';
-            margin-left: 8px;
-            transition: margin-left 0.4s ease;
+            transition: transform 0.4s ease;
         }
 
         .read-more:hover {
-            color: #ffffff;
+            color: var(--gold);
+            gap: 1rem;
         }
 
         .read-more:hover::after {
-            margin-left: 15px;
+            transform: translateX(5px);
         }
 
         footer {
@@ -391,17 +505,23 @@
             text-align: center;
             padding: 3rem 2rem;
             margin-top: 6rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
             color: #666;
             font-weight: 300;
             letter-spacing: 2px;
             font-size: 0.85rem;
             text-transform: uppercase;
+            transition: all 0.4s ease;
         }
 
-        @keyframes shimmerMove {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(50%); }
+        footer:hover {
+            color: var(--gold);
+            border-top-color: rgba(212, 175, 55, 0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
         }
 
         @keyframes rotate {
@@ -412,7 +532,11 @@
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
-                letter-spacing: 4px;
+                letter-spacing: 6px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
             }
             
             .nav-links {
@@ -437,7 +561,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Numismata</div>
+            <div class="logo">AncientNumis</div>
             <ul class="nav-links">
                 <li><a href="#collection">Collection</a></li>
                 <li><a href="#blog">Journal</a></li>
@@ -448,12 +572,12 @@
     </header>
 
     <div class="hero">
-        <h1>Provincia</h1>
-        <p>Architecture in Bronze</p>
+        <h1>Monumenta</h1>
+        <p class="subtitle">Architecture Preserved in Bronze</p>
     </div>
 
     <div class="container" id="collection">
-        <h2 class="section-title">Collection</h2>
+        <h2 class="section-title">The Collection</h2>
         
         <div class="coin-grid">
             <div class="coin-card">
@@ -506,6 +630,7 @@
                 <div class="coin-info">
                     <h3>Theater of Hierapolis</h3>
                     <div class="period">Phrygia · Antonine Period</div>
+                    <div class="period">Phrygia · Antonine Period</div>
                     <p>Provincial bronze featuring the semi-circular theater with detailed seating sections. The architecture reflects the importance of public entertainment spaces.</p>
                 </div>
             </div>
@@ -549,7 +674,7 @@
     </div>
 
     <footer>
-        <p>© 2025 Numismata · Preserving History Through the Ages</p>
+        <p>© 2025 AncientNumis · Monumenta Collection</p>
     </footer>
 </body>
 </html>

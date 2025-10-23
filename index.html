@@ -1,392 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AncientNumis - Monumenta Collection</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monumenta Collection · AncientNumis</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;600&display=swap');
-
     :root {
       --gold: #d4af37;
-      --gold-dark: #b8941e;
-      --gold-light: #f4d86c;
-      --bronze: #cd7f32;
+      --gold-light: #e8c85c;
+      --bronze: #a37b2e;
+      --dark-bg: #0b0b0b;
+      --card-bg: #151008;
     }
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background: #000;
+      background: radial-gradient(circle at top center, #1a1408 0%, #0b0b0b 70%, #000 100%);
       color: #e8e8e8;
       line-height: 1.8;
       overflow-x: hidden;
+      margin: 0;
     }
 
     header {
-      background: rgba(0, 0, 0, 0.98);
-      padding: 1.5rem 0;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(20px);
-      transition: all 0.3s ease;
-    }
-
-    header:hover {
-      border-bottom-color: rgba(212, 175, 55, 0.3);
-    }
-
-    nav {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 3rem;
+      text-align: center;
+      padding: 60px 20px;
     }
 
     .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 300;
+      font-size: 2.5em;
+      color: var(--gold);
       letter-spacing: 3px;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--bronze));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.4s ease;
+      font-weight: 500;
+      transition: all 0.3s ease;
     }
 
     .logo:hover {
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       filter: brightness(1.1);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
+    nav {
+      text-align: center;
+      margin-top: 20px;
     }
 
-    .nav-links a {
-      color: #aaa;
+    nav a {
+      color: #e8e8e8;
       text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 300;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      margin: 0 15px;
       transition: all 0.3s ease;
-      position: relative;
-      padding: 0.5rem 0;
     }
 
-    .nav-links a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
+    nav a:hover {
       color: var(--gold-light);
-    }
-
-    .nav-links a:hover::before {
-      width: 80%;
+      letter-spacing: 1px;
     }
 
     .hero {
       text-align: center;
-      padding: 8rem 2rem 6rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
-      animation: pulse 10s ease-in-out infinite;
+      padding: 120px 20px 80px;
     }
 
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5.5rem;
-      font-weight: 300;
-      margin-bottom: 1rem;
-      color: #fff;
+      font-size: 3em;
+      color: var(--gold);
       letter-spacing: 10px;
       text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-      transition: all 0.4s ease;
+      transition: all 0.3s ease;
     }
 
     .hero h1:hover {
-      letter-spacing: 12px;
-      text-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+      letter-spacing: 14px;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
     }
 
     .hero .subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--gold);
-      letter-spacing: 5px;
-      font-weight: 300;
-      font-style: italic;
-      position: relative;
-      z-index: 1;
+      color: var(--gold-light);
+      font-size: 1.2em;
+      letter-spacing: 3px;
+      margin-top: 10px;
       transition: all 0.3s ease;
     }
 
     .hero .subtitle:hover {
       color: var(--gold-light);
-      letter-spacing: 6px;
+      letter-spacing: 5px;
     }
 
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 4rem 3rem;
+    .section {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 20px;
     }
 
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem;
-      font-weight: 300;
-      margin-bottom: 4rem;
       text-align: center;
-      color: #fff;
-      letter-spacing: 7px;
+      font-size: 2em;
+      color: var(--gold);
+      margin-bottom: 40px;
+      letter-spacing: 5px;
       text-transform: uppercase;
       position: relative;
       transition: all 0.3s ease;
-      cursor: default;
-    }
-
-    .section-title:hover {
-      color: var(--gold-light);
-      letter-spacing: 9px;
     }
 
     .section-title::after {
       content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
+      display: block;
       width: 150px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      height: 2px;
+      background: var(--gold);
+      margin: 15px auto;
       transition: all 0.4s ease;
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    .section-title:hover {
+      color: var(--gold-light);
+      letter-spacing: 8px;
     }
 
     .section-title:hover::after {
       width: 200px;
-      box-shadow: 0 0 8px var(--gold);
+      box-shadow: 0 0 10px var(--gold-light);
     }
 
-    .coin-grid {
+    .coin-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 3rem;
-      margin-top: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
     }
 
     .coin-card {
-      background: rgba(20, 20, 20, 0.5);
-      border-radius: 0;
-      overflow: hidden;
-      border: 1px solid rgba(212, 175, 55, 0.12);
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
       transition: all 0.4s ease;
-      position: relative;
-      cursor: pointer;
+      border: 1px solid rgba(212, 175, 55, 0.15);
     }
 
     .coin-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(212, 175, 55, 0.4);
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+      border-color: rgba(212, 175, 55, 0.3);
     }
 
-    .coin-image {
+    .coin-card img {
       width: 100%;
-      height: 300px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      position: relative;
-      z-index: 1;
-      transition: all 0.4s ease;
-    }
-
-    .coin-card:hover .coin-image {
-      filter: brightness(1.1);
+      border-radius: 10px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
     }
 
     .coin-info {
-      padding: 2rem;
+      margin-top: 15px;
     }
 
     .coin-info h3 {
-      font-family: 'Cormorant Garamond', serif;
-      color: #fff;
-      font-size: 1.8rem;
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 5px;
       transition: all 0.3s ease;
     }
 
     .coin-card:hover .coin-info h3 {
       color: var(--gold-light);
+      letter-spacing: 2px;
     }
 
     .coin-info .period {
-      color: #777;
-      font-size: 0.85rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 300;
-      transition: all 0.3s ease;
+      color: #a37b2e;
+      font-size: 0.9em;
     }
 
-    .coin-card:hover .coin-info .period {
-      color: var(--bronze);
-    }
-
-    .coin-info p {
-      color: #b8b8b8;
-      font-size: 0.95rem;
-      line-height: 1.8;
-      font-weight: 300;
-      transition: all 0.3s ease;
-    }
-
-    .coin-card:hover .coin-info p {
-      color: #e8e8e8;
-    }
-
-    .blog-section {
-      background: rgba(10, 10, 10, 0.5);
-      padding: 5rem 0;
-      margin-top: 6rem;
-      border-top: 1px solid rgba(212, 175, 55, 0.12);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.12);
-    }
-
-    .blog-posts {
+    .blog-list {
       display: grid;
-      gap: 2.5rem;
-      margin-top: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
     }
 
     .blog-post {
-      background: rgba(20, 20, 20, 0.5);
-      padding: 3rem;
-      border: 1px solid rgba(212, 175, 55, 0.1);
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 15px;
       transition: all 0.4s ease;
-      position: relative;
-      cursor: pointer;
+      border: 1px solid rgba(212, 175, 55, 0.15);
     }
 
     .blog-post:hover {
-      transform: translateX(10px);
+      transform: translateY(-5px);
       border-color: rgba(212, 175, 55, 0.3);
-      box-shadow: -5px 0 20px rgba(212, 175, 55, 0.1);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
     }
 
     .blog-post h3 {
-      font-family: 'Cormorant Garamond', serif;
-      color: #fff;
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 1px;
+      color: var(--gold);
+      margin-bottom: 10px;
       transition: all 0.3s ease;
     }
 
     .blog-post:hover h3 {
       color: var(--gold-light);
+      letter-spacing: 1px;
     }
 
     .blog-date {
-      color: #777;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 300;
-      transition: all 0.3s ease;
-    }
-
-    .blog-post:hover .blog-date {
-      color: var(--bronze);
-    }
-
-    .blog-post p {
-      color: #b8b8b8;
-      line-height: 1.9;
-      font-weight: 300;
-      transition: all 0.3s ease;
-    }
-
-    .blog-post:hover p {
-      color: #e8e8e8;
+      font-size: 0.85em;
+      color: #a37b2e;
+      margin-bottom: 10px;
     }
 
     .read-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 1.5rem;
-      color: #999;
+      display: inline-block;
+      color: var(--gold);
       text-decoration: none;
-      font-weight: 400;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      font-size: 0.85rem;
+      margin-top: 10px;
+      font-weight: 500;
       transition: all 0.3s ease;
     }
 
     .read-more:hover {
       color: var(--gold-light);
-      gap: 0.6rem;
+      letter-spacing: 1px;
     }
 
     footer {
-      background: #000;
       text-align: center;
-      padding: 3rem 2rem;
-      margin-top: 6rem;
-      border-top: 1px solid rgba(212, 175, 55, 0.12);
-      color: #777;
-      font-weight: 300;
-      letter-spacing: 2px;
-      font-size: 0.85rem;
-      text-transform: uppercase;
+      padding: 40px 0;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      color: #a37b2e;
+      font-size: 0.9em;
       transition: all 0.3s ease;
     }
 
@@ -395,151 +238,204 @@
       border-top-color: rgba(212, 175, 55, 0.25);
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.25; }
-      50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.35; }
+    /* About & Contact */
+    .about, .contact {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 15px;
+      padding: 30px;
+      border: 1px solid rgba(212, 175, 55, 0.1);
     }
 
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 3rem;
-        letter-spacing: 6px;
-      }
+    .about p, .contact p {
+      color: #d8d8d8;
+    }
 
-      .hero .subtitle {
-        font-size: 1.3rem;
-      }
+    .contact a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-      .nav-links {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
+    .contact a:hover {
+      color: var(--gold-light);
+    }
 
-      .coin-grid {
-        grid-template-columns: 1fr;
-      }
+    /* Blog post page */
+    .post {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 15px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      max-width: 900px;
+      margin: 80px auto;
+    }
 
-      nav {
-        padding: 0 1.5rem;
-      }
+    .post h1 {
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
 
-      .container {
-        padding: 3rem 1.5rem;
-      }
+    .post .date {
+      color: #a37b2e;
+      font-size: 0.9em;
+      margin-bottom: 30px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--gold-light);
     }
   </style>
 </head>
 <body>
   <header>
+    <div class="logo">MONUMENTA</div>
     <nav>
-      <div class="logo">AncientNumis</div>
-      <ul class="nav-links">
-        <li><a href="#collection">Collection</a></li>
-        <li><a href="#blog">Journal</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#collection">Collection</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <div class="hero">
-    <h1>Monumenta</h1>
-    <p class="subtitle">Architecture Preserved in Bronze</p>
+  <div class="hero" id="home">
+    <h1>AncientNumis</h1>
+    <div class="subtitle">The Monumenta Collection</div>
   </div>
 
-  <div class="container" id="collection">
-    <h2 class="section-title">The Collection</h2>
+  <div class="section" id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about">
+      <p>
+        The Monumenta Collection explores ancient coinage that depicts the world’s most
+        enduring monuments and architectural marvels. Each piece reveals the intersection
+        of art, empire, and devotion — preserving the spirit of civilizations long past.
+      </p>
+    </div>
+  </div>
 
-    <div class="coin-grid">
+  <div class="section" id="collection">
+    <h2 class="section-title">Collection Highlights</h2>
+    <div class="coin-gallery">
       <div class="coin-card">
-        <div class="coin-image">🏛️</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Colosseum_sestertius_Dio_Cassius_66_21-22.jpg/480px-Colosseum_sestertius_Dio_Cassius_66_21-22.jpg" alt="Colosseum Sestertius" />
+        <div class="coin-info">
+          <h3>Colosseum Sestertius</h3>
+          <div class="period">Rome, AD 80</div>
+        </div>
+      </div>
+      <div class="coin-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Temple_of_Jupiter_Stator_coin.jpg/480px-Temple_of_Jupiter_Stator_coin.jpg" alt="Temple of Jupiter Stator" />
+        <div class="coin-info">
+          <h3>Temple of Jupiter Stator</h3>
+          <div class="period">Rome, 1st c. BC</div>
+        </div>
+      </div>
+      <div class="coin-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Ephesus_Artemis_tetradrachm.jpg/480px-Ephesus_Artemis_tetradrachm.jpg" alt="Temple of Artemis at Ephesus" />
         <div class="coin-info">
           <h3>Temple of Artemis</h3>
-          <div class="period">Ephesus · II Century AD</div>
-          <p>Provincial bronze depicting the magnificent Temple of Artemis, one of the Seven Wonders of the Ancient World. The reverse shows the tetrastyle temple facade with exceptional architectural detail.</p>
-        </div>
-      </div>
-
-      <div class="coin-card">
-        <div class="coin-image">🏺</div>
-        <div class="coin-info">
-          <h3>Caesarea Aqueduct</h3>
-          <div class="period">Judaea · Hadrianic Era</div>
-          <p>Rare coin featuring the impressive Roman aqueduct system at Caesarea Maritima. Shows the multi-tiered arches that supplied water to the coastal city.</p>
-        </div>
-      </div>
-
-      <div class="coin-card">
-        <div class="coin-image">⚔️</div>
-        <div class="coin-info">
-          <h3>Colosseum View</h3>
-          <div class="period">Rome · Severan Dynasty</div>
-          <p>Provincial issue showing the Flavian Amphitheatre with remarkable detail. The die engraver captured the multiple arcade levels that made this structure iconic.</p>
-        </div>
-      </div>
-
-      <div class="coin-card">
-        <div class="coin-image">🏰</div>
-        <div class="coin-info">
-          <h3>City Gate of Nicaea</h3>
-          <div class="period">Bithynia · III Century AD</div>
-          <p>Bronze coin depicting the fortified city gate with flanking towers. An excellent example of Roman military architecture on provincial coinage.</p>
-        </div>
-      </div>
-
-      <div class="coin-card">
-        <div class="coin-image">⛲</div>
-        <div class="coin-info">
-          <h3>Nymphaeum Fountain</h3>
-          <div class="period">Side · Pamphylia</div>
-          <p>Showcases an ornate public fountain structure with multiple niches. These monumental fountains were centerpieces of Roman urban planning.</p>
-        </div>
-      </div>
-
-      <div class="coin-card">
-        <div class="coin-image">🏟️</div>
-        <div class="coin-info">
-          <h3>Theater of Hierapolis</h3>
-          <div class="period">Phrygia · Antonine Period</div>
-          <p>Provincial bronze featuring the semi-circular theater with detailed seating sections. The architecture reflects the importance of public entertainment spaces.</p>
+          <div class="period">Ephesus, 2nd c. BC</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="blog-section" id="blog">
-    <div class="container">
-      <h2 class="section-title">Journal</h2>
-
-      <div class="blog-posts">
-        <div class="blog-post">
-          <h3>The Architectural Language of Roman Provincial Coinage</h3>
-          <div class="blog-date">October 15, 2025</div>
-          <p>Roman provincial coins served as miniature billboards, broadcasting the architectural achievements of cities across the empire...</p>
-          <a href="#" class="read-more">Continue Reading</a>
-        </div>
-
-        <div class="blog-post">
-          <h3>Identifying Pseudo-Autonomous Issues: A Collector's Guide</h3>
-          <div class="blog-date">October 8, 2025</div>
-          <p>Pseudo-autonomous coins—those struck without imperial portraits—present unique challenges and opportunities for collectors...</p>
-          <a href="#" class="read-more">Continue Reading</a>
-        </div>
-
-        <div class="blog-post">
-          <h3>The Temples of Ephesus on Bronze: A Type Study</h3>
-          <div class="blog-date">September 30, 2025</div>
-          <p>No city showcased its architectural heritage on coinage quite like Ephesus. The Temple of Artemis appears in countless variations...</p>
-          <a href="#" class="read-more">Continue Reading</a>
-        </div>
-
-        <div class="blog-post">
-          <h3>Conservation Ethics: Cleaning Ancient Bronze Coins</h3>
-          <div class="blog-date">September 22, 2025</div>
-          <p>The patina on ancient bronze coins represents centuries of history. Yet sometimes cleaning is necessary to reveal architectural details...</p>
-          <a href="#" class="read-more">Continue Reading</a>
-        </div>
+  <div class="section" id="blog">
+    <h2 class="section-title">Blog</h2>
+    <div class="blog-list">
+      <div class="blog-post">
+        <h3><a href="#post1" style="text-decoration:none; color:inherit;">Architectural Grandeur in Roman Coinage</a></h3>
+        <div class="blog-date">October 10, 2025</div>
+        <p>
+          Roman coins were miniature monuments — preserving structures that time has erased. From the Colosseum to
+          the Pantheon, these coins immortalized the empire’s might...
+        </p>
+        <a href="#post1" class="read-more">Continue Reading</a>
       </div>
+
+      <div class="blog-post">
+        <h3><a href="#post2" style="text-decoration:none; color:inherit;">Ephesus: The City of Temples</a></h3>
+        <div class="blog-date">October 3, 2025</div>
+        <p>
+          No city showcased its architectural heritage on coinage quite like Ephesus. The Temple of Artemis appears
+          in countless variations...
+        </p>
+        <a href="#post2" class="read-more">Continue Reading</a>
+      </div>
+
+      <div class="blog-post">
+        <h3><a href="#post3" style="text-decoration:none; color:inherit;">Conservation Ethics: Cleaning Ancient Bronze Coins</a></h3>
+        <div class="blog-date">September 22, 2025</div>
+        <p>
+          The patina on ancient bronze coins represents centuries of history. Yet sometimes cleaning is necessary to
+          reveal architectural details...
+        </p>
+        <a href="#post3" class="read-more">Continue Reading</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Post Pages -->
+  <div id="post1" class="post">
+    <h1>Architectural Grandeur in Roman Coinage</h1>
+    <div class="date">October 10, 2025</div>
+    <p>
+      Roman coins serve as enduring witnesses to the architectural ambition of the Empire. Each minting was more than
+      mere currency — it was propaganda, celebration, and art combined. The Colosseum sestertius, issued under Titus,
+      is a triumph of perspective and detail, showing the amphitheater in miniature relief, arches and all.
+    </p>
+    <p>
+      These depictions tell us not only what these structures looked like, but also how the Romans wanted to be seen:
+      as masters of space and civilization itself. Through the medium of coinage, architecture became eternal.
+    </p>
+    <a href="#blog" class="back-link">← Back to Blog</a>
+  </div>
+
+  <div id="post2" class="post">
+    <h1>Ephesus: The City of Temples</h1>
+    <div class="date">October 3, 2025</div>
+    <p>
+      Ephesus, famed for its monumental Temple of Artemis — one of the Seven Wonders of the Ancient World — was a
+      beacon of culture and commerce in Asia Minor. Its coins celebrated this architectural splendor in rich
+      variety, showing the temple’s many columns, statue of Artemis, and sacred symbols.
+    </p>
+    <p>
+      Each issue served as a civic signature, telling the world: here stands a city of gods and artists. Through its
+      coinage, Ephesus immortalized its devotion to both the divine and the aesthetic.
+    </p>
+    <a href="#blog" class="back-link">← Back to Blog</a>
+  </div>
+
+  <div id="post3" class="post">
+    <h1>Conservation Ethics: Cleaning Ancient Bronze Coins</h1>
+    <div class="date">September 22, 2025</div>
+    <p>
+      The green patina that forms on ancient bronze is not mere corrosion — it is a natural shield that preserves
+      history. Over-cleaning risks erasing both beauty and authenticity. Yet some coins require careful stabilization
+      to prevent decay.
+    </p>
+    <p>
+      Ethical conservation balances the desire to reveal detail with respect for the passage of time. Every scratch,
+      every layer of oxidation, tells a story centuries in the making.
+    </p>
+    <a href="#blog" class="back-link">← Back to Blog</a>
+  </div>
+
+  <div class="section" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact">
+      <p>For inquiries or collaboration:</p>
+      <p>
+        📩 <a href="mailto:contact@ancientnumis.com">contact@ancientnumis.com</a>
+      </p>
     </div>
   </div>
 
